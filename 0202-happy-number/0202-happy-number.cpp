@@ -21,7 +21,6 @@ public:
             sum = n*n;
         }
         
-        // s.insert(sum);
         return helper(sum);
     }
     bool isHappy(int n) {
