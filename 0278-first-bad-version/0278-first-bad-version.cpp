@@ -7,10 +7,10 @@ public:
         
         // cout<<isBadVersion(4);
         
-        int l = 1, h = n;
+        int l = 1, h = n, mid;
 
         while(l<h){
-            int mid = l + (h-l)/2;
+            mid = l + (h-l)/2;
             if(isBadVersion(mid)){
                 h = mid;
             }else {
