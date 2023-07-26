@@ -3,10 +3,9 @@ public:
     vector<int> nextGreaterElements(vector<int>& nums) {
         int n = nums.size();
         vector<int> ans(n, -1);
+        int j, sIndex;
         for(int i=0;i<n;i++){
-            int sIndex = i;
-            bool found = false;
-            int j;
+             sIndex = i;
             if(sIndex == n-1){
                 j = 0;
             }else {
