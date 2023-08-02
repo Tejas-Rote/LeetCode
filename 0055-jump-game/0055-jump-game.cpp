@@ -15,7 +15,24 @@ public:
     
     bool canJump(vector<int>& nums) {
         int n = nums.size();
-        vector<int> dp(n+1 , -1);
-        return helper(0, nums, dp);
+        // vector<int> dp(n+1 , -1);
+        // return helper(0, nums, dp);
+        vector<int> dp(n+1 , false);
+        dp[n-1] = true;
+        for(int i = n-2;i>=0;i--){
+            
+            // reach can be beyond  the last index of array 
+            
+            int reach = min(i + nums[i], n-1);
+            for(int k=i+1;k<=reach;k++){
+                if(dp[k]){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        
+        return dp[0];
+        
     }
 };
