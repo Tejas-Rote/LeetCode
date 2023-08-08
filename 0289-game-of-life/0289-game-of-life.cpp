@@ -6,7 +6,8 @@ public:
         int n = board.size();
         int m = board[0].size();
         vector<vector<int>> ans(n, vector<int>(m, 0));
-
+        // 2-> newly alive
+        // 3-> newly died
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 int ln = 0;
@@ -18,26 +19,29 @@ public:
                     }
                 }
 
-                if(board[i][j] == 1) {
-                    if(ln < 2 || ln > 3) {
-                        ans[i][j] = 0;
-                    }
-                    else {
-                        ans[i][j] = 1;
+                if(board[i][j] == 0) {
+                    //currently dead
+                    //can become alive if has exactly three live neighbours
+                    if(ln == 3) {
+                        board[i][j] = 2; //newly alive
                     }
                 }
-                else {
-                    if(ln == 3) {
-                        ans[i][j] = 1;
+                else if(board[i][j] == 1) {
+                    //<2 -> die
+                    //==2 || ==3 live
+                    //>3 ->die
+                    if(ln < 2 || ln > 3) {
+                        board[i][j] = 3; //newly dead
                     }
                 }
             }
         }
 
         // Update the original board with the values from ans
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                board[i][j] = ans[i][j];
+        for(int i = 0; i<n; i++) {
+            for(int j = 0; j<m; j++) {
+                if(board[i][j] == 2) board[i][j] = 1;
+                else if(board[i][j] == 3) board[i][j] = 0;
             }
         }
     }
