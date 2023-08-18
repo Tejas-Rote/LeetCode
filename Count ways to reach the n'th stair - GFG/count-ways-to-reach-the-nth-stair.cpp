@@ -6,54 +6,30 @@ using namespace std;
 class Solution
 {
     public:
-    #define mod 1000000007
     //Function to count number of ways to reach the nth stair.
     
-    // int f (int n , vector<int> dp, int &cnt){
-    //     // if(n==0){
-    //     //     cnt++;
-    //     //     return n;
-    //     // }
+    int helper(int ind, int n, vector<int> &dp){
+        if( ind == n){
+            return 1;
+        }
+        if(dp[ind] != -1){
+            return dp[ind];
+        }
         
-    //     // if(dp[n] != -1){
-    //     //     return dp[n];
-    //     // }else{
-    //     //     if(n>=2 ){
-    //     //         return dp[n] = f(n-2, dp , cnt);
-    //     //     }
-    //     //     if(n>=1){
-    //     //         return dp[n] =f(n-1, dp , cnt);
-    //     //     }
-    //     // }
-    // }
-    
-
-    
-    
+        int one = helper(ind+1, n, dp);
+        int two=0;
+        if(ind+2 <=n){
+            two = helper(ind+2, n, dp);
+        }
+        
+        return dp[ind] = (one + two)% 1000000007;
+        
+    }
     int countWays(int n)
     {
-        // int cnt =0;
+        vector<int> dp(n+1, -1);
+        return helper(0, n, dp);
         
-        // vector<int> memo(n+1, -1);
-        // f(n, memo , cnt);
-        // cout<<cnt<<endl;
-        // for(int i=0;i<n+1;i++){
-        //     cout<<memo[i]<<" ";
-        // }
-        // return cnt;
-        
-        int prev2 = 1;
-        int prev = 1;
-          
-        for(int i=2; i<=n; i++){
-            int cur_i = (prev2%mod)+ (prev%mod);
-            prev2 = prev;
-            prev= cur_i;
-         }
-        // cout<<prev;
-        return prev%mod;
-        
-        // your code here
     }
 };
 
