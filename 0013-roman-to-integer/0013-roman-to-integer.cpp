@@ -10,17 +10,16 @@ public:
             {'D', 500},
             {'M', 1000}
         };
-        int ans =0;
-        int n= s.size();
-        int i=0;
-        int prev = 0;
-        for(i;i<n;i++){
+        
+        int ans = 0, prev = 0;
+        for (int i = 0, n = s.size(); i < n; ++i) {
             char sym = s[i];
-            int val =   romanToInteger[sym];
-            if(prev < val){
-                val -= 2*prev;
+            int val = romanToInteger[sym];
+            
+            if (prev < val) {
+                val -= 2 * prev;
             }
-            // cout<<sym<<" "<<val<<endl;
+            
             ans += val;
             prev = val;
         }
