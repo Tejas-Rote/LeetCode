@@ -3,8 +3,9 @@ public:
     int searchInsert(vector<int>& a, int x) {
         int l = 0;
         int r = a.size()-1;
+        int mid;
         while(l<=r){
-            int mid = l + (r-l)/2;
+             mid = l + (r-l)/2;
             
             if(a[mid] == x){
                 return mid;
