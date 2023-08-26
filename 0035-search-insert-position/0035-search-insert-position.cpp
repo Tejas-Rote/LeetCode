@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int helper(vector<int> & a, int x){
+    int searchInsert(vector<int>& a, int x) {
         int l = 0;
         int r = a.size()-1;
         while(l<=r){
@@ -18,8 +18,5 @@ public:
         }
         
         return l;
-    }
-    int searchInsert(vector<int>& nums, int target) {
-        return helper(nums, target);
     }
 };
